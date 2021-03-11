@@ -3,6 +3,8 @@
 import Hapi from "@hapi/hapi";
 import { Request, Server } from "@hapi/hapi";
 
+import { helloRoutes } from "./hello";
+
 export let server: Server;
 
 function index(request: Request): string {
@@ -15,6 +17,10 @@ export const init = async function(): Promise<Server> {
     host: '0.0.0.0'
   });
 
+    /* Routes from other modules */
+  server.route(helloRoutes);
+
+  /* Brief routes from this module */
   server.route({
     method: "GET",
     path: "/",
